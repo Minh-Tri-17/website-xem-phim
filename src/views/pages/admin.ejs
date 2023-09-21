@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flix</title>
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
+    rel="stylesheet" />
+  <!-- OWL CAROUSEL -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" />
+  <!-- BOX ICONS -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <!-- APP CSS -->
+  <link rel="stylesheet" href="../css/appAdmin.css" />
+  <!-- APP SCRIPT -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <aside>
+    <div class="container">
+      <div class="title">
+        <h1>quản lý website phim</h1>
+      </div>
+      <nav>
+        <ul>
+          <li value="1">tổng quát</li>
+          <li value="2">tài khoản</li>
+          <li value="3">đánh giá</li>
+          <li value="4">thông tin phim</li>
+          <li value="5">phim</li>
+          <li value="6">thể loại</li>
+          <li value="7">danh mục</li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+  <main>
+    <div class="hidden"></div>
+    <div class="article">
+      <header>
+        <div>
+          <a class="logo">
+            <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
+          </a>
+        </div>
+        <div class="title">
+          <h1 class="title-acticle">tổng quát</h1>
+        </div>
+        <div>
+          <p>MinhTri</p>
+          <a href="/" class="btn btn-hover">
+            <span>thoát</span>
+          </a>
+        </div>
+      </header>
+      <article>
+        <section>
+          <div class="contanier-section">
+            <div class="general-info">
+              <div class="general-info-detail">
+                <img src="../images/icons8-eye-50.png" alt="" />
+                <div>
+                  <h1>
+                    <%= countView%>
+                  </h1>
+                  <h1>Tổng lượt xem</h1>
+                </div>
+              </div>
+              <div class="general-info-detail">
+                <img src="../images/icons8-staff-50.png" alt="" />
+                <div>
+                  <h1>
+                    <%= countUser%>
+                  </h1>
+                  <h1>Tổng người dùng</h1>
+                </div>
+              </div>
+              <div class="general-info-detail">
+                <img src="../images/icons8-comment-50.png" alt="" />
+                <div>
+                  <h1>
+                    <%= countComment%>
+                  </h1>
+                  <h1>Tổng đánh giá</h1>
+                </div>
+              </div>
+            </div>
+            <div class="chart">
+              <div class="month">
+                <canvas id="chartMonth"></canvas>
+              </div>
+              <div class="type">
+                <canvas id="charttype"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <a href="#create-account" class="create"> + Thêm</a>
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên đăng nhập</th>
+                    <th>Mật khẩu</th>
+                    <th>Quyền</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataUser.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataUser[i].id%>
+                      </td>
+                      <td>
+                        <%= dataUser[i].Email%>
+                      </td>
+                      <td>
+                        <%= dataUser[i].MatKhau%>
+                      </td>
+                      <td>
+                        <%= dataUser[i].Quyen%>
+                      </td>
+                      <td>
+                        <a href="#edit-account" class="edit">Sửa</a>
+                        <a href="/handleDelete?idTK=<%= dataUser[i].id%>" class="edit">Xóa</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="create-account">
+              <h1>thêm tài khoản</h1>
+              <form action="/handleCreate" method="post">
+                <input type="text" name="idTK" hidden />
+                <input type="email" name="email" placeholder="Tên đăng nhập" />
+                <input type="text" name="password" placeholder="Mật khẩu" />
+                <button type="submit">thêm</button>
+              </form>
+            </div>
+            <div class="section" id="edit-account">
+              <h1>sửa tài khoản</h1>
+              <form action="/handleUpdate" method="post">
+                <input type="text" name="idTK" placeholder="ID" />
+                <input type="email" name="email" placeholder="Tên đăng nhập" />
+                <input type="text" name="password" placeholder="Mật khẩu" />
+                <button type="submit">sửa</button>
+              </form>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Tên đăng nhập</th>
+                    <th>Tên phim</th>
+                    <th>Nội dụng</th>
+                    <th>Điểm</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataComment.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataComment[i].TaiKhoan.Email%>
+                      </td>
+                      <td>
+                        <%= dataComment[i].Phim.TenPhim%>
+                      </td>
+                      <td>
+                        <%= dataComment[i].NoiDung%>
+                      </td>
+                      <td>
+                        <%= dataComment[i].Diem%>
+                      </td>
+                      <td>
+                        <a href="#edit-comment" class="edit">Sửa</a>
+                        <p>Xóa</p>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <a href="#create-info-movies" class="create"> + Thêm</a>
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên phim</th>
+                    <th>Diễn viên</th>
+                    <th>Đạo diễn</th>
+                    <th>Quốc gia</th>
+                    <th>Năm sản xuất</th>
+                    <th>Tóm tắt</th>
+                    <th>Thời lượng</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataInfoMovie.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataInfoMovie[i].id%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].Phim.TenPhim%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].DienVien%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].DaoDien%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].QuocGia%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].NamSanXuat%>
+                      </td>
+                      <td class="summary">
+                        <%= dataInfoMovie[i].TomTat%>
+                      </td>
+                      <td>
+                        <%= dataInfoMovie[i].ThoiLuong%>
+                      </td>
+                      <td></td>
+                      <td>
+                        <a href="#edit-info-movies" class="edit">Sửa</a>
+                        <a href="/handleDelete?idIM=<%= dataInfoMovie[i].id%>" class="edit">Xóa</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="create-info-movies">
+              <h1>thêm thông tin phim</h1>
+              <form action="/handleCreate" method="post">
+                <input type="text" name="idTTP" hidden />
+                <select name="movie">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataMovie.length ; i++) {%>
+                    <option value="<%= dataMovie[i].id %>">
+                      <%= dataMovie[i].TenPhim%>
+                    </option>
+                    <% } %>
+                </select>
+                <input type="text" name="performer" placeholder="Diễn viên" />
+                <input type="text" name="director" placeholder="Tên Đạo diễn" />
+                <input type="text" name="country" placeholder="Quốc gia" />
+                <input type="text" name="year" placeholder="Năm sản xuất" />
+                <input type="text" name="time" placeholder="Thời lượng" />
+                <textarea name="summary" class="textarea" cols="100" rows="10" placeholder="Tóm tắt"></textarea>
+                <button type="submit">thêm</button>
+              </form>
+            </div>
+            <div class="section" id="edit-info-movies">
+              <h1>sửa thông tin phim</h1>
+              <form action="/handleUpdate" method="post">
+                <input type="text" name="idTTP" />
+                <select name="movie">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataMovie.length ; i++) {%>
+                    <option value="<%= dataMovie[i].id %>">
+                      <%= dataMovie[i].TenPhim%>
+                    </option>
+                    <% } %>
+                </select>
+                <input type="text" name="performer" placeholder="Diễn viên" />
+                <input type="text" name="director" placeholder="Tên Đạo diễn" />
+                <input type="text" name="country" placeholder="Quốc gia" />
+                <input type="text" name="year" placeholder="Năm sản xuất" />
+                <input type="text" name="time" placeholder="Thời lượng" />
+                <textarea name="summary" class="textarea" cols="100" rows="10" placeholder="Tóm tắt"></textarea>
+                <button type="submit">sửa</button>
+              </form>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <a href="#create-movies" class="create"> + Thêm</a>
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên phim</th>
+                    <th>Ảnh</th>
+                    <th>Link phim</th>
+                    <th>Poster</th>
+                    <th>Lượt xem</th>
+                    <th>Tên thể loại</th>
+                    <th>Tên danh mục</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataMovie.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataMovie[i].id%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].TenPhim%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].Anh%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].Link%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].Poster%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].LuotXem%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].TheLoais[0].TenTheLoai%>
+                      </td>
+                      <td>
+                        <%= dataMovie[i].DanhMucs[0].TenDanhMuc%>
+                      </td>
+                      <td>
+                        <a href="#edit-movies" class="edit">Sửa</a>
+                        <a href="/handleDelete?idP=<%= dataMovie[i].id%>" class="edit">Xóa</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="create-movies">
+              <h1>thêm phim</h1>
+              <form action="/handleCreate" method="post">
+                <input type="text" name="idP" hidden />
+                <input type="text" name="nameMovies" placeholder="Tên phim" />
+                <input type="text" name="image" placeholder="Ảnh" />
+                <input type="text" name="link" placeholder="Link" />
+                <input type="text" name="poster" placeholder="Poster" />
+                <select name="genre">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataGenre.length ; i++) {%>
+                    <option value="<%= dataGenre[i].id %>">
+                      <%= dataGenre[i].TenTheLoai %>
+                    </option>
+                    <% } %>
+                </select>
+                <select name="catalog">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataCatalog.length ; i++) {%>
+                    <option value="<%= dataCatalog[i].id %>">
+                      <%= dataCatalog[i].TenDanhMuc %>
+                    </option>
+                    <% } %>
+                </select>
+                <button type="submit">thêm</button>
+              </form>
+            </div>
+            <div class="section" id="edit-movies">
+              <h1>sửa phim</h1>
+              <form action="/handleUpdate" method="post">
+                <input type="text" name="idP" />
+                <input type="text" name="nameMovies" placeholder="Tên phim" />
+                <input type="text" name="image" placeholder="Ảnh" />
+                <input type="text" name="link" placeholder="Link" />
+                <input type="text" name="poster" placeholder="Poster" />
+                <select name="genre">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataGenre.length ; i++) {%>
+                    <option value="<%= dataGenre[i].id %>">
+                      <%= dataGenre[i].TenTheLoai %>
+                    </option>
+                    <% } %>
+                </select>
+                <select name="catalog">
+                  <option value="">-- Chọn sắp xếp --</option>
+                  <% for(let i=0; i < dataCatalog.length ; i++) {%>
+                    <option value="<%= dataCatalog[i].id %>">
+                      <%= dataCatalog[i].TenDanhMuc %>
+                    </option>
+                    <% } %>
+                </select>
+                <button type="submit">sửa</button>
+              </form>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <a href="#create-type" class="create"> + Thêm</a>
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên thể loại</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataGenre.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataGenre[i].id%>
+                      </td>
+                      <td>
+                        <%= dataGenre[i].TenTheLoai%>
+                      </td>
+                      <td>
+                        <a href="#edit-type" class="edit">Sửa</a>
+                        <a href="/handleDelete?idTL=<%= dataGenre[i].id%>" class="edit">Xóa</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="create-type">
+              <h1>thêm thể loại</h1>
+              <form action="/handleCreate" method="post">
+                <input type="text" name="idTL" hidden />
+                <input type="text" name="nameGenre" placeholder="Tên thể loại" />
+                <button type="submit">thêm</button>
+              </form>
+            </div>
+            <div class="section" id="edit-type">
+              <h1>sửa thể loại</h1>
+              <form action="/handleUpdate" method="post">
+                <input type="text" name="idTL" />
+                <input type="text" name="nameGenre" placeholder="Tên thể loại" />
+                <button type="submit">sửa</button>
+              </form>
+            </div>
+          </div>
+          <div class="contanier-section">
+            <a href="#create-catalog" class="create"> + Thêm</a>
+            <div class="section">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Danh mục</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0;i<dataCatalog.length;i++) {%>
+                    <tr>
+                      <td>
+                        <%= dataCatalog[i].id%>
+                      </td>
+                      <td>
+                        <%= dataCatalog[i].TenDanhMuc%>
+                      </td>
+                      <td>
+                        <a href="#edit-catalog" class="edit">Sửa</a>
+                        <a href="/handleDelete?idDM=<%= dataCatalog[i].id%>" class="edit">Xóa</a>
+                      </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="create-catalog">
+              <h1>thêm danh mục</h1>
+              <form action="/handleCreate" method="post">
+                <input type="text" name="idDM" hidden />
+                <input type="text" name="nameCatalog" placeholder="Tên danh mục" />
+                <button type="submit">thêm</button>
+              </form>
+            </div>
+            <div class="section" id="edit-catalog">
+              <h1>sửa danh mục</h1>
+              <form action="/handleUpdate" method="post">
+                <input type="text" name="idDM" />
+                <input type="text" name="nameCatalog" placeholder="Tên danh mục" />
+                <button type="submit">sửa</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <script type="text/javascript">
+    //biểu đồ thống kê
+    var label1 = [
+      "Tháng 1",
+      "Tháng 2",
+      "Tháng 3",
+      "Tháng 4",
+      "Tháng 5",
+      "Tháng 6",
+      "Tháng 7",
+      "Tháng 8",
+      "Tháng 9",
+      "Tháng 10",
+      "Tháng 11",
+      "Tháng 12",
+    ];
+    var values1 = [
+      500, 305, 450, 609, 583, 525, 1034, 624, 814, 1273, 372, 784,
+    ];
+
+    function chartMonth() {
+      const data = {
+        labels: label1,
+        datasets: [
+          {
+            label: "Lượt xem theo tháng",
+            data: values1,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.5)",
+              "rgba(248, 242, 49, 0.5)",
+              "rgba(255, 205, 86, 0.5)",
+              "rgba(109, 236, 50, 0.5)",
+              "rgba(54, 162, 235, 0.5)",
+              "rgba(153, 102, 255, 0.5)",
+              "rgba(201, 203, 207, 0.5)",
+              "rgba(255, 99, 132, 0.5)",
+              "rgba(255, 159, 64, 0.5)",
+              "rgba(153, 102, 255, 0.5)",
+              "rgba(75, 192, 192, 0.5)",
+              "rgba(109, 236, 50, 0.5)",
+            ],
+            borderColor: [
+              "rgb(255, 99, 132)",
+              "rgb(248, 242, 49)",
+              "rgb(255, 205, 86)",
+              "rgb(109, 236, 50)",
+              "rgb(54, 162, 235)",
+              "rgb(153, 102, 255)",
+              "rgb(201, 203, 207)",
+              "rgb(255, 99, 132)",
+              "rgb(255, 159, 64)",
+              "rgb(153, 102, 255)",
+              "rgb(75, 192, 192)",
+              "rgb(109, 236, 50)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "bar",
+        data: data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+
+      const ctd = document.getElementById("chartMonth");
+      const chart = new Chart(ctd, config);
+    }
+    chartMonth();
+
+    var label2 = [
+      "Phim lẻ",
+      "Phim chiếu rạp",
+      "Phim thuyết minh",
+      "Phim vietsub",
+    ];
+    var values2 = [3736, 842, 727, 2616];
+
+    function chartType() {
+      const data = {
+        labels: label2,
+        datasets: [
+          {
+            label: "Lượt xem theo danh mục: ",
+            data: values2,
+            backgroundColor: [
+              "rgb(255, 99, 132, 0.5)",
+              "rgb(75, 192, 192, 0.5)",
+              "rgb(255, 205, 86, 0.5)",
+              "rgb(109, 236, 50, 0.5)",
+            ],
+          },
+        ],
+      };
+
+      const config = {
+        type: "doughnut",
+        data: data,
+      };
+
+      const ctt = document.getElementById("charttype");
+      const chart = new Chart(ctt, config);
+    }
+    chartType();
+  </script>
+
+  <!-- SCRIPT -->
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- OWL CAROUSEL -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous"></script>
+  <!-- APP SCRIPT -->
+  <script src="../js/appAdmin.js"></script>
+</body>
+
+</html>

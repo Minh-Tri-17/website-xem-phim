@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head.ejs")%>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs")%>
+
+    <!-- MAIN -->
+    <main>
+      <div class="main-container">
+        <article>
+          <!-- MOVIES -->
+          <section>
+            <div class="container">
+              <div class="container-series">
+                <div class="section-header">
+                  All movies
+                  <div class="container-filter">
+                    <form action="/movies">
+                      <select name="year">
+                        <option value="">-- Chọn sắp xếp --</option>
+                        <% for(let i = 0; i < dataYear.length ; i++) {%>
+                        <option value="<%= dataYear[i].NamSanXuat %>">
+                          <%= dataYear[i].NamSanXuat %>
+                        </option>
+                        <% } %>
+                      </select>
+                      <select name="country">
+                        <option value="">-- Chọn sắp xếp --</option>
+                        <% for(let i = 0; i < dataQuocGia.length ; i++) {%>
+                        <option value="<%= dataQuocGia[i].QuocGia %>">
+                          <%= dataQuocGia[i].QuocGia %>
+                        </option>
+                        <% } %>
+                      </select>
+                      <button type="submit" class="btn-filter">Tìm kiếm</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="movies">
+                  <!-- MOVIE ITEM -->
+                  <% for(let i = 0; i < dataMovie.length ; i++) {%>
+                  <a href="/html/detail.html" class="movie-item">
+                    <img
+                      src="../images/movies/<%= dataMovie[i].Anh %>"
+                      alt=""
+                    />
+                    <div class="movie-item-content">
+                      <div class="movie-item-title">
+                        <%= dataMovie[i].TenPhim %>
+                      </div>
+                      <div class="movie-infos">
+                        <div class="movie-info">
+                          <i class="bx bxs-star"></i>
+                          <span>9.5</span>
+                        </div>
+                        <div class="movie-info">
+                          <i class="bx bxs-time"></i>
+                          <span>120 mins</span>
+                        </div>
+                        <div class="movie-info">
+                          <span>HD</span>
+                        </div>
+                        <div class="movie-info">
+                          <span>16+</span>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <% }%>
+                  <!-- END MOVIE ITEM -->
+                </div>
+                <hr />
+                <div class="pagination"></div>
+              </div>
+            </div>
+          </section>
+          <!-- END MOVIES -->
+        </article>
+      </div>
+    </main>
+    <!-- END MAIN -->
+
+    <%- include("../partials/footer.ejs")%>
+    <script src="../js/appPaging.js"></script>
+  </body>
+</html>

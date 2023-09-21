@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head.ejs")%>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs")%>
+    
+    <!-- MAIN -->
+    <main>
+      <!-- HERO SECTION -->
+      <div class="hero-section">
+        <!-- HERO SLIDE -->
+        <div class="hero-slide">
+          <div class="owl-carousel carousel-nav-center" id="hero-carousel">
+            <!-- SLIDE ITEM -->
+            <% for(let i=0;i<dataTopSlide.length;i++) { %>
+              <div class="hero-slide-item">
+                <img src="../images/posters/<%= dataTopSlide[i].Poster %>" alt="" />
+                <div class="overlay"></div>
+                <div class="hero-slide-item-content">
+                  <div class="item-content-wraper">
+                    <div class="item-content-title top-down"><%= dataTopSlide[i].TenPhim %></div>
+                    <div class="movie-infos top-down delay-2">
+                      <div class="movie-info">
+                        <i class="bx bxs-star"></i> <span>9.5</span>
+                      </div>
+                      <div class="movie-info">
+                        <i class="bx bxs-time"></i> <span>120 mins</span>
+                      </div>
+                      <div class="movie-info">
+                        <span>HD</span>
+                      </div>
+                      <div class="movie-info">
+                        <span>16+</span>
+                      </div>
+                    </div>
+                    <div class="item-content-description top-down delay-4">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quas, possimus eius. Deserunt non odit, cum vero
+                      reprehenderit laudantium odio vitae autem quam, incidunt
+                      molestias ratione mollitia accusantium, facere ab suscipit.
+                    </div>
+                    <div class="item-action top-down delay-6">
+                      <a href="/handleDetailMovie?id=<%= dataTopSlide[i].id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="btn btn-hover">
+                        <i class="bx bxs-right-arrow"></i> <span>Watch now</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            <!-- END SLIDE ITEM -->
+          </div>
+        </div>
+        <!-- END HERO SLIDE -->
+        <!-- TOP MOVIES SLIDE -->
+        <div class="top-movies-slide">
+          <div class="owl-carousel" id="top-movies-slide">
+            <!-- MOVIE ITEM -->
+            <% for(let i=0;i<dataSlide.length;i++) { %>
+              <a href="/handleDetailMovie?id=<%= dataSlide[i].id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="movie-item">
+                <img src="../images/movies/<%= dataSlide[i].Anh %>" alt="" />
+                <div class="movie-item-content">
+                  <div class="movie-item-title"><%= dataSlide[i].TenPhim %></div>
+                  <div class="movie-infos">
+                    <div class="movie-info">
+                      <i class="bx bxs-star"></i> <span>9.5</span>
+                    </div>
+                    <div class="movie-info">
+                      <i class="bx bxs-time"></i> <span>120 mins</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>HD</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>16+</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <% } %>
+            <!-- END MOVIE ITEM -->
+          </div>
+        </div>
+        <!-- END TOP MOVIES SLIDE -->
+      </div>
+      <!-- END HERO SECTION -->
+
+      <!-- LATEST MOVIES SECTION -->
+      <section>
+        <div class="container">
+          <div class="section-header">latest movies</div>
+          <div class="movies-slide carousel-nav-center owl-carousel">
+            <!-- MOVIE ITEM -->
+          <% for(let i=0;i<dataMovie.length;i++) { %>
+            <a href="/handleDetailMovie?id=<%= dataMovie[i].id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="movie-item">
+              <img src="../images/movies/<%= dataMovie[i].Anh %>" alt="" />
+              <div class="movie-item-content">
+                <div class="movie-item-title"><%= dataMovie[i].TenPhim %></div>
+                <div class="movie-infos">
+                  <div class="movie-info">
+                    <i class="bx bxs-star"></i> <span>9.5</span>
+                  </div>
+                  <div class="movie-info">
+                    <i class="bx bxs-time"></i> <span>120 mins</span>
+                  </div>
+                  <div class="movie-info">
+                    <span>HD</span>
+                  </div>
+                  <div class="movie-info">
+                    <span>16+</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <% } %>
+            <!-- END MOVIE ITEM -->
+          </div>
+        </div>
+      </section>
+      <!-- END LATEST MOVIES SECTION -->
+
+      <!-- LATEST SERIES SECTION -->
+      <section>
+        <div class="container">
+          <div class="section-header">latest series</div>
+          <div class="movies-slide carousel-nav-center owl-carousel">
+            <!-- MOVIE ITEM -->
+            <% for(let i=0;i<dataSeries.length;i++) { %>
+              <a href="/handleDetailMovie?id=<%= dataSeries[i].id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="movie-item">
+                <img src="../images/movies/<%= dataSeries[i].Anh %>" alt="" />
+                <div class="movie-item-content">
+                  <div class="movie-item-title"><%= dataSeries[i].TenPhim %></div>
+                  <div class="movie-infos">
+                    <div class="movie-info">
+                      <i class="bx bxs-star"></i> <span>9.5</span>
+                    </div>
+                    <div class="movie-info">
+                      <i class="bx bxs-time"></i> <span>120 mins</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>HD</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>16+</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <% } %>
+            <!-- END MOVIE ITEM -->
+          </div>
+        </div>
+      </section>
+      <!-- END LATEST SERIES SECTION -->
+
+      <!-- LATEST CARTOONS SECTION -->
+      <section>
+        <div class="container">
+          <div class="section-header">latest cartoons</div>
+          <div class="movies-slide carousel-nav-center owl-carousel">
+            <!-- MOVIE ITEM -->
+              <% for(let i=0;i<dataCartoon.length;i++) { %>
+              <a href="/handleDetailMovie?id=<%= dataCartoon[i].id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="movie-item">
+                <img src="../images/movies/<%= dataCartoon[i].Anh %>" alt="" />
+                <div class="movie-item-content">
+                  <div class="movie-item-title"><%= dataCartoon[i].TenPhim %></div>
+                  <div class="movie-infos">
+                    <div class="movie-info">
+                      <i class="bx bxs-star"></i> <span>9.5</span>
+                    </div>
+                    <div class="movie-info">
+                      <i class="bx bxs-time"></i> <span>120 mins</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>HD</span>
+                    </div>
+                    <div class="movie-info">
+                      <span>16+</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <% } %>
+            <!-- END MOVIE ITEM -->
+          </div>
+        </div>
+      </section>
+      <!-- END LATEST CARTOONS SECTION -->
+
+      <!-- SPECIAL MOVIE SECTION -->
+      <section>
+        <div class="hero-slide-item">
+          <img src="../images/posters/<%= dataTop1.Poster %>" alt="" />
+          <div class="overlay"></div>
+          <div class="hero-slide-item-content">
+            <div class="item-content-wraper">
+              <div class="item-content-title"><%= dataTop1.TenPhim %></div>
+              <div class="movie-infos">
+                <div class="movie-info">
+                  <i class="bx bxs-star"></i> <span>9.5</span>
+                </div>
+                <div class="movie-info">
+                  <i class="bx bxs-time"></i> <span>120 mins</span>
+                </div>
+                <div class="movie-info">
+                  <span>HD</span>
+                </div>
+                <div class="movie-info">
+                  <span>16+</span>
+                </div>
+              </div>
+              <div class="item-content-description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
+                possimus eius. Deserunt non odit, cum vero reprehenderit
+                laudantium odio vitae autem quam, incidunt molestias ratione
+                mollitia accusantium, facere ab suscipit.
+              </div>
+              <div class="item-action">
+                <a href="/handleDetailMovie?id=<%= dataTop1.id%>&&idTheLoai=<%= dataTop1.TheLoais[0].id%>" class="btn btn-hover">
+                  <i class="bx bxs-right-arrow"></i> <span>Watch now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END SPECIAL MOVIE SECTION -->
+    </main>
+    <!-- END MAIN -->
+
+    <%- include("../partials/footer.ejs")%>
+  </body>
+</html>

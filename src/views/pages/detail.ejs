@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/head.ejs")%>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs")%>
+
+    <!-- MAIN -->
+    <main>
+      <div class="main-container">
+        <article>
+          <!-- VIDEO -->
+          <section>
+            <div class="container">
+              <div>
+                <h1>
+                  <a href="../html/home.jsp">Home</a> &gt;
+                  <a href="#">Kinh dị</a>
+                  &gt; THEATRE OF THE DEAD
+                </h1>
+              </div>
+              <video src="https://youtu.be/l7rUbFnEwd8" controls></video>
+            </div>
+          </section>
+          <!-- END VIDEO -->
+
+          <!-- INFOR FILM -->
+          <section>
+            <div class="container">
+              <div class="container-info">
+                <div class="info">
+                  <!-- MOVIE ITEM -->
+                  <div class="img-info-film">
+                    <img src="../images/movies/<%= dataDetail.Anh %>" alt="" />
+                  </div>
+                  <!-- END MOVIE ITEM -->
+                  <div class="info-film">
+                    <div>
+                      <h1><%= dataDetail.TenPhim %></h1>
+                      <div class="info-time">
+                        <p>Năm: <%= dataInfoMovie[0].NamSanXuat %></p>
+                        <p>Thời lượng: <%= dataInfoMovie[0].ThoiLuong %> phút</p>
+                        <p>Quốc gia: <%= dataInfoMovie[0].QuocGia %></p>
+                        <p>Đạo diễn: <%= dataInfoMovie[0].DaoDien %></p>
+                        <p>Diễn viên: <%= dataInfoMovie[0].DienVien %></p>
+                        <p>Lượt xem: <%= dataDetail.LuotXem %> lượt</p>
+                        <form action="" class="seach">
+                          <input type="text" name="idMovies" id="" hidden />
+                        </form>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="info-score">
+                      <div>
+                        <h3>9.3</h3>
+                      </div>
+                      <div>
+                        <i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
+                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                      </div>
+                    </div>
+                    <hr />
+                    <div class="info-genre">
+                      <% for(let i=0;i<dataGenreMovie.length;i++) { %>
+                      <a href="#"><%= dataGenreMovie[i].TenTheLoai %></a>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+                <div class="summary">
+                  <hr />
+                  <h3>Tóm tắt</h3>
+                  <p>
+                    <%= dataInfoMovie[0].TomTat %>
+                  </p>
+                </div>
+              </div>
+              <div class="container-series">
+                <div class="section-header">Series movies</div>
+                <div class="movies-slide carousel-nav-center owl-carousel">
+                  <!-- MOVIE ITEM -->
+                  <% for(let i=0;i<dataRelate.length;i++) { %>
+                     <a href="/handleDetailMovie?id=<%= dataRelate[i].id%>&&idTheLoai=<%= dataRelate[i].TheLoais[0].id%>" class="movie-item">
+                      <img src="../images/movies/<%= dataRelate[i].Anh %>" alt="" />
+                      <div class="movie-item-content">
+                        <div class="movie-item-title"><%= dataRelate[i].TenPhim %></div>
+                        <div class="movie-infos">
+                          <div class="movie-info">
+                            <i class="bx bxs-star"></i> <span>9.5</span>
+                          </div>
+                          <div class="movie-info">
+                            <i class="bx bxs-time"></i> <span>120 mins</span>
+                          </div>
+                          <div class="movie-info">
+                            <span>HD</span>
+                          </div>
+                          <div class="movie-info">
+                            <span>16+</span>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <% } %>
+                  <!-- END MOVIE ITEM -->
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- END INFOR FILM -->
+
+          <!-- COMMENT -->
+          <section>
+            <div class="container">
+              <div class="container-commnet">
+                <h3><%= dataCountComment.count%> comment</h3>
+                <div class="commnet">
+                  <form action="/handleComment" method="get">
+                    <input type="text" name="comment" />
+                    <input type="text" name="id" value="<%= dataDetail.id %>" hidden/>
+                    <input
+                      type="number"
+                      name="score"
+                      min="1"
+                      max="10"
+                    />
+                    <button type="submit">Send</button>
+                  </form>
+                </div>
+                <!-- ITEM COMMENT-->
+                <% for(let i=0;i<dataComment.length;i++) { %>
+                <div class="commnet">
+                  <div>
+                    <h3><%= dataComment[i].TaiKhoan.Email %></h3>
+                    <p><%= dataComment[i].NoiDung %></p>
+                  </div>
+                </div>
+                <% } %>
+                  <!-- END ITEM COMMENT-->
+              </div>
+            </div>
+          </section>
+          <!-- END COMMENT -->
+        </article>
+        <aside>
+          <section>
+            <div class="container-Related">
+              <div class="section-header">Top movies</div>
+              <!-- ITEM MOVIE RELATED -->
+              <% for(let i=0;i<dataTop10View.length;i++) { %>
+              <a href="/handleDetailMovie?id=<%= dataTop10View[i].id%>&&idTheLoai=<%= dataTop10View[i].TheLoais[0].id%>">
+                <div class="item-related">
+                  <img src="../images/movies/<%= dataTop10View[i].Anh %>" alt="" />
+                  <div>
+                    <h4><%= dataTop10View[i].TenPhim %></h4>
+                    <h4><i class="bx bxs-star"></i>10</h4>
+                    <p>2023</p>
+                    <p><%= dataTop10View[i].LuotXem %> lượt xem</p>
+                  </div>
+                </div>
+              </a>
+              <% } %>
+              <!--END ITEM MOVIE RELATED -->
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <!-- END MAIN -->
+
+    <%- include("../partials/footer.ejs")%>
+  </body>
+</html>

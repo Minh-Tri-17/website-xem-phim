@@ -1,0 +1,52 @@
+<!-- NAV -->
+<div class="nav-wrapper">
+  <div class="container">
+    <div class="nav">
+      <a href="/" class="logo">
+        <i class="bx bx-movie-play bx-tada main-color"></i>Fl<span class="main-color">i</span>x
+      </a>
+      <form action="/movies"  class="seach">
+        <input type="text" name="inputSeach" />
+        <button type="submit">seach</button>
+      </form>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li class="menu-dropdown">
+          <a>Genre</a>
+          <ul class="menu">
+            <% for(let i=0;i<dataGenre.length;i++) { %>
+              <li><a href="/movies?idTheLoai=<%= dataGenre[i].id %>">
+                  <%= dataGenre[i].TenTheLoai %>
+                </a></li>
+              <% } %>
+          </ul>
+        </li>
+        <li class="menu-dropdown">
+          <a>catalog</a>
+          <ul class="menu">
+            <% for(let i=0;i<dataCatalog.length;i++) { %>
+              <li><a href="/movies?idDanhMuc=<%= dataCatalog[i].id %>">
+                  <%= dataCatalog[i].TenDanhMuc %>
+                </a></li>
+              <% } %>
+          </ul>
+        </li>
+        <li><a href="/movies">Movies</a></li>
+        <li>
+          <a href="/login" class="btn btn-hover">
+            <span>Sign in</span>
+          </a>
+        </li>
+      </ul>
+      <!-- MOBILE MENU TOGGLE -->
+      <div class="hamburger-menu" id="hamburger-menu">
+        <div class="hamburger"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END NAV -->
+
+<div class="on-top hidden">
+  <h1>&Hat;</h1>
+</div>

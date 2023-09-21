@@ -1,0 +1,283 @@
+:root {
+	--main-color: #c0392b;
+	--body-bg: #181616;
+	--box-bg: #221f1f;
+	--text-color: #ffffff;
+	--line: #6d6c6c;
+	--padding: 10px;
+	--space-top: 70px;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font-family: "Cairo", sans-serif;
+	background-color: var(--body-bg);
+	color: var(--text-color);
+}
+
+main {
+	display: flex;
+}
+
+nav {
+	margin: 50px 0;
+}
+
+aside {
+	flex: 1;
+	background-color: var(--box-bg);
+	text-transform: uppercase;
+	position: fixed;
+	height: 100%;
+	z-index: 2;
+}
+
+.article {
+	flex: 5;
+	height: max-content;
+}
+
+header {
+	text-transform: uppercase;
+	display: flex;
+	position: fixed;
+	width: 90%;
+	background-color: var(--box-bg);
+	justify-content: space-around;
+}
+
+section {
+	color: var(--body-bg);
+	padding: var(--padding);
+	margin-top: var(--space-top);
+}
+
+a {
+	text-decoration: none;
+	color: unset;
+}
+
+li {
+	list-style: none;
+	cursor: pointer;
+	padding: var(--padding);
+	margin: 20px;
+	font-size: 20px;
+	background-color: var(--main-color);
+	transition: background-color 0.3s linear;
+}
+
+li:hover {
+	background-color: var(--body-bg);
+	color: var(--main-color);
+	margin-right: 0;
+	letter-spacing: 2px;
+	transition: background-color 0.3s linear;
+}
+
+.main-color {
+	color: var(--main-color);
+}
+
+.logo {
+	font-size: 2rem;
+	font-weight: 900;
+}
+
+.hidden {
+	flex: 1;
+}
+
+.active {
+	background-color: var(--body-bg);
+	color: var(--main-color);
+	margin-right: 0;
+	letter-spacing: 2px;
+}
+
+.title {
+	padding: var(--padding);
+	text-align: center;
+	margin: 0 12px;
+	color: var(--text-color);
+}
+
+.title-acticle {
+	margin: 0 20px;
+}
+
+.btn {
+	color: var(--text-color);
+	padding: 0.25rem 1.5rem;
+	text-transform: uppercase;
+	font-size: 1.25rem;
+	font-weight: 700;
+	display: inline-flex;
+	position: relative;
+	align-items: center;
+}
+
+.btn-hover::before {
+	z-index: 1;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background-color: var(--main-color);
+	transition: 0.3s ease-in-out;
+}
+
+.btn-hover:hover::before {
+	width: 100%;
+}
+
+.btn i,
+.btn span {
+	z-index: 1;
+}
+
+.btn i {
+	margin-right: 1rem;
+}
+
+.contanier-dashbroad {
+	margin-top: var(--space-top);
+}
+
+.general-info {
+	display: flex;
+}
+
+.general-info .general-info-detail {
+	display: flex;
+	width: 50%;
+	margin: 30px;
+	padding: var(--padding);
+	background-color: var(--text-color);
+}
+
+.general-info .general-info-detail img {
+	width: 100px;
+	height: 100px;
+	padding: 10px;
+}
+
+.general-info div h1 {
+	padding: var(--padding);
+	font-size: 25px;
+	height: 50%;
+	margin: auto;
+	width: 100%;
+}
+
+.chart {
+	margin: 30px;
+	display: flex;
+	gap: 30px;
+}
+
+.month {
+	flex: 4;
+	background-color: var(--text-color);
+}
+
+.type {
+	flex: 1;
+	padding: 20px;
+	background-color: var(--text-color);
+}
+
+.create {
+	display: flex;
+	color: var(--text-color);
+	justify-content: center;
+	padding: var(--padding);
+}
+
+table {
+	width: 100%;
+	border-spacing: initial;
+}
+
+table img {
+	width: 20%;
+}
+
+thead tr {
+	color: var(--text-color);
+	background-color: var(--main-color);
+}
+
+tbody {
+	text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: var(--text-color);
+}
+
+tbody tr:nth-child(even) {
+	background-color: var(--box-bg);
+	color: var(--text-color);
+}
+
+table td,
+table th {
+	padding: 10px;
+}
+
+.summary {
+	text-align: justify;
+	max-width: 500px;
+	min-width: 450px;
+}
+
+.section {
+	padding: var(--padding);
+}
+
+.section h1 {
+	color: var(--text-color);
+	text-transform: uppercase;
+}
+
+form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+input,
+textarea {
+	padding: 5px;
+	font-size: 20px;
+	border: none;
+}
+
+button {
+	width: 150px;
+	cursor: pointer;
+	padding: 8px;
+	font-size: 20px;
+	border: none;
+	text-transform: uppercase;
+	color: var(--text-color);
+	background-color: var(--box-bg);
+	transition: background-color, letter-spacing 0.3s linear;
+}
+
+button:hover {
+	background-color: var(--main-color);
+	letter-spacing: 2px;
+}
