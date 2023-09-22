@@ -10,6 +10,7 @@ let getPageAdmin = async (req, res) => {
   let countUser = await adminService.handleLoadCountUser();
   let countComment = await adminService.handleLoadCountComment();
   let countView = await adminService.handleLoadCountView();
+  let dataView = await adminService.handleLoadViewGenre();
 
   return res.render("admin.ejs", {
     dataUser,
@@ -21,6 +22,7 @@ let getPageAdmin = async (req, res) => {
     countUser,
     countComment,
     countView,
+    dataView,
   });
 };
 

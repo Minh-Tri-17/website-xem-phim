@@ -1,4 +1,5 @@
 import db from "../models/index";
+import { Sequelize } from "sequelize";
 
 let handleLoadUser = () => {
   return new Promise(async (resolve, reject) => {
@@ -118,6 +119,23 @@ let handleLoadCountComment = () => {
       if (data) {
         resolve(data.count);
       }
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+let handleLoadViewGenre = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let data = await db.Phims.findAll({
+        include: [{ model: db.DanhMucs }],
+        attributes: [
+          [Sequelize.fn("sum", Sequelize.col("LuotXem")), "LuotXem"],
+        ],
+        group: "TenDanhMuc",
+      });
+      resolve(data);
     } catch (error) {
       reject(error);
     }
@@ -257,6 +275,7 @@ let CreateMovie = (dataReq) => {
         Anh: dataReq.images,
         Link: dataReq.link,
         Poster: dataReq.poster,
+        LuotXem: 0,
       });
 
       let idP = await db.Phims.max("id");
@@ -450,6 +469,7 @@ module.exports = {
   handleLoadCountUser: handleLoadCountUser,
   handleLoadCountComment: handleLoadCountComment,
   handleLoadCountView: handleLoadCountView,
+  handleLoadViewGenre: handleLoadViewGenre,
 
   CreateUser: CreateUser,
   UpdateUser: UpdateUser,
