@@ -572,27 +572,30 @@
       const chart = new Chart(ctd, config);
     }
     chartMonth();
+    const label2 = [];
+    const values2 = [];
 
-    var label2 = [
-      "Phim lẻ",
-      "Phim chiếu rạp",
-      "Phim thuyết minh",
-      "Phim vietsub",
-    ];
-    var values2 = [3736, 842, 727, 2616];
+    `<% for(let i=0;i<dataView.length;i++) { %>`
+    values2.push(`<%= dataView[i].LuotXem%>`);
+    label2.push(`<%=dataView[i].DanhMucs[0].TenDanhMuc%>`);
+    `<% } %>`
+
+
+
 
     function chartType() {
       const data = {
         labels: label2,
         datasets: [
           {
-            label: "Lượt xem theo danh mục: ",
+            label: "Lượt xem: ",
             data: values2,
             backgroundColor: [
               "rgb(255, 99, 132, 0.5)",
               "rgb(75, 192, 192, 0.5)",
               "rgb(255, 205, 86, 0.5)",
               "rgb(109, 236, 50, 0.5)",
+              "rgb(153, 102, 255, 0.5)"
             ],
           },
         ],
