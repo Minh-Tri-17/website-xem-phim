@@ -8,7 +8,7 @@ let handlePermissions = (dataReq) => {
         resolve(true);
       }
       if (data && data.Quyen !== "admin") {
-        resolve(false);
+        resolve(data);
       }
       if (!data) {
         resolve("Tài Khoản không tồn tại hoặc sai mật khẩu");

@@ -138,13 +138,12 @@ let handleLoadInfoMovie = (dataReq) => {
 let handleCreateComment = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
-      console.log(dataReq);
       await db.DanhGias.create(
         {
           NoiDung: dataReq.comment,
           Diem: dataReq.score,
           PhimId: dataReq.id,
-          TaiKhoanId: 1,
+          TaiKhoanId: dataReq.idTaiKhoan,
         },
         {
           include: [

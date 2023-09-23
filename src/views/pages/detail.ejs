@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include("../partials/head.ejs")%>
-  </head>
-  <body>
-    <%- include("../partials/header.ejs")%>
+
+<head>
+  <%- include("../partials/head.ejs")%>
+</head>
+
+<body>
+  <%- include("../partials/header.ejs")%>
 
     <!-- MAIN -->
     <main>
@@ -37,13 +39,19 @@
                   <!-- END MOVIE ITEM -->
                   <div class="info-film">
                     <div>
-                      <h1><%= dataDetail.TenPhim %></h1>
+                      <h1>
+                        <%= dataDetail.TenPhim %>
+                      </h1>
                       <div class="info-time">
-                        <p>Năm: <%= dataInfoMovie[0].NamSanXuat %></p>
+                        <p>Năm: <%= dataInfoMovie[0].NamSanXuat %>
+                        </p>
                         <p>Thời lượng: <%= dataInfoMovie[0].ThoiLuong %> phút</p>
-                        <p>Quốc gia: <%= dataInfoMovie[0].QuocGia %></p>
-                        <p>Đạo diễn: <%= dataInfoMovie[0].DaoDien %></p>
-                        <p>Diễn viên: <%= dataInfoMovie[0].DienVien %></p>
+                        <p>Quốc gia: <%= dataInfoMovie[0].QuocGia %>
+                        </p>
+                        <p>Đạo diễn: <%= dataInfoMovie[0].DaoDien %>
+                        </p>
+                        <p>Diễn viên: <%= dataInfoMovie[0].DienVien %>
+                        </p>
                         <p>Lượt xem: <%= dataDetail.LuotXem %> lượt</p>
                         <form action="" class="seach">
                           <input type="text" name="idMovies" id="" hidden />
@@ -56,18 +64,19 @@
                         <h3>9.3</h3>
                       </div>
                       <div>
-                        <i class="bx bxs-star"></i><i class="bx bxs-star"></i
-                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
-                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
-                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i
-                        ><i class="bx bxs-star"></i><i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i
+                          class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i
+                          class="bx bxs-star"></i><i class="bx bxs-star"></i><i class="bx bxs-star"></i><i
+                          class="bx bxs-star"></i>
                       </div>
                     </div>
                     <hr />
                     <div class="info-genre">
                       <% for(let i=0;i<dataGenreMovie.length;i++) { %>
-                      <a href="#"><%= dataGenreMovie[i].TenTheLoai %></a>
-                      <% } %>
+                        <a href="#">
+                          <%= dataGenreMovie[i].TenTheLoai %>
+                        </a>
+                        <% } %>
                     </div>
                   </div>
                 </div>
@@ -84,10 +93,13 @@
                 <div class="movies-slide carousel-nav-center owl-carousel">
                   <!-- MOVIE ITEM -->
                   <% for(let i=0;i<dataRelate.length;i++) { %>
-                     <a href="/handleDetailMovie?id=<%= dataRelate[i].id%>&&idTheLoai=<%= dataRelate[i].TheLoais[0].id%>" class="movie-item">
+                    <a href="/handleDetailMovie?id=<%= dataRelate[i].id%>&&idTheLoai=<%= dataRelate[i].TheLoais[0].id%>"
+                      class="movie-item">
                       <img src="../images/movies/<%= dataRelate[i].Anh %>" alt="" />
                       <div class="movie-item-content">
-                        <div class="movie-item-title"><%= dataRelate[i].TenPhim %></div>
+                        <div class="movie-item-title">
+                          <%= dataRelate[i].TenPhim %>
+                        </div>
                         <div class="movie-infos">
                           <div class="movie-info">
                             <i class="bx bxs-star"></i> <span>9.5</span>
@@ -105,7 +117,7 @@
                       </div>
                     </a>
                     <% } %>
-                  <!-- END MOVIE ITEM -->
+                      <!-- END MOVIE ITEM -->
                 </div>
               </div>
             </div>
@@ -116,30 +128,32 @@
           <section>
             <div class="container">
               <div class="container-commnet">
-                <h3><%= dataCountComment.count%> comment</h3>
+                <h3>
+                  <%= dataCountComment.count%> comment
+                </h3>
                 <div class="commnet">
                   <form action="/handleComment" method="get">
                     <input type="text" name="comment" />
-                    <input type="text" name="id" value="<%= dataDetail.id %>" hidden/>
-                    <input
-                      type="number"
-                      name="score"
-                      min="1"
-                      max="10"
-                    />
+                    <input type="text" name="id" value="<%= dataDetail.id %>" hidden />
+                    <input type="text" name="idTaiKhoan" value="<%= permission %>" hidden />
+                    <input type="number" name="score" min="1" max="10" />
                     <button type="submit">Send</button>
                   </form>
                 </div>
                 <!-- ITEM COMMENT-->
                 <% for(let i=0;i<dataComment.length;i++) { %>
-                <div class="commnet">
-                  <div>
-                    <h3><%= dataComment[i].TaiKhoan.Email %></h3>
-                    <p><%= dataComment[i].NoiDung %></p>
+                  <div class="commnet">
+                    <div>
+                      <h3>
+                        <%= dataComment[i].TaiKhoan.Email %>
+                      </h3>
+                      <p>
+                        <%= dataComment[i].NoiDung %>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <% } %>
-                  <!-- END ITEM COMMENT-->
+                  <% } %>
+                    <!-- END ITEM COMMENT-->
               </div>
             </div>
           </section>
@@ -151,19 +165,24 @@
               <div class="section-header">Top movies</div>
               <!-- ITEM MOVIE RELATED -->
               <% for(let i=0;i<dataTop10View.length;i++) { %>
-              <a href="/handleDetailMovie?id=<%= dataTop10View[i].id%>&&idTheLoai=<%= dataTop10View[i].TheLoais[0].id%>">
-                <div class="item-related">
-                  <img src="../images/movies/<%= dataTop10View[i].Anh %>" alt="" />
-                  <div>
-                    <h4><%= dataTop10View[i].TenPhim %></h4>
-                    <h4><i class="bx bxs-star"></i>10</h4>
-                    <p>2023</p>
-                    <p><%= dataTop10View[i].LuotXem %> lượt xem</p>
+                <a
+                  href="/handleDetailMovie?id=<%= dataTop10View[i].id%>&&idTheLoai=<%= dataTop10View[i].TheLoais[0].id%>">
+                  <div class="item-related">
+                    <img src="../images/movies/<%= dataTop10View[i].Anh %>" alt="" />
+                    <div>
+                      <h4>
+                        <%= dataTop10View[i].TenPhim %>
+                      </h4>
+                      <h4><i class="bx bxs-star"></i>10</h4>
+                      <p>2023</p>
+                      <p>
+                        <%= dataTop10View[i].LuotXem %> lượt xem
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </a>
-              <% } %>
-              <!--END ITEM MOVIE RELATED -->
+                </a>
+                <% } %>
+                  <!--END ITEM MOVIE RELATED -->
             </div>
           </section>
         </aside>
@@ -172,5 +191,6 @@
     <!-- END MAIN -->
 
     <%- include("../partials/footer.ejs")%>
-  </body>
+</body>
+
 </html>

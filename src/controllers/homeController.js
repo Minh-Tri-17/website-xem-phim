@@ -26,6 +26,7 @@ let getPageHome = async (req, res) => {
 
 let handleDetailMovie = async (req, res) => {
   let dataReq = req.query;
+  let permission = req.session.permission;
 
   let dataGenre = await headerService.handleLoadGenre();
   let dataCatalog = await headerService.handleLoadCatalog();
@@ -50,6 +51,7 @@ let handleDetailMovie = async (req, res) => {
     dataGenreMovie,
     dataCountComment,
     dataInfoMovie,
+    permission,
   });
 };
 

@@ -10,9 +10,12 @@ let getPageDetail = async (req, res) => {
 
 let handleComment = async (req, res) => {
   let dataReq = req.query;
-
-  await detailService.handleCreateComment(dataReq);
-  return res.redirect("/");
+  if (dataReq.idTaiKhoan) {
+    await detailService.handleCreateComment(dataReq);
+    return res.redirect("/");
+  } else {
+    return res.redirect("/login");
+  }
 };
 
 module.exports = {

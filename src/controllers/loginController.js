@@ -11,7 +11,8 @@ let handleLogin = async (req, res) => {
   if (permission === true) {
     return res.redirect("/admin");
   }
-  if (permission === false) {
+  if (permission.id) {
+    req.session.permission = permission.id;
     return res.redirect("/");
   } else {
     return res.render("login.ejs", { data: permission });
