@@ -25,21 +25,20 @@ let getPageHome = async (req, res) => {
 };
 
 let handleDetailMovie = async (req, res) => {
-  let idPhim = req.query.id;
-  let idTheLoai = req.query.idTheLoai;
+  let dataReq = req.query;
 
   let dataGenre = await headerService.handleLoadGenre();
   let dataCatalog = await headerService.handleLoadCatalog();
 
-  let dataDetail = await homeService.handleLoadDetailMovie(idPhim);
+  let dataDetail = await homeService.handleLoadDetailMovie(dataReq);
 
-  let dataRelate = await detailService.handleLoadRelate(idTheLoai);
+  let dataRelate = await detailService.handleLoadRelate(dataReq);
   let dataTop10View = await detailService.handleLoadTop10View();
-  let dataComment = await detailService.handleLoadComment(idPhim);
-  let dataCountComment = await detailService.handleLoadCountComment(idPhim);
-  let dataGenreMovie = await detailService.handleLoadGenreMovie(idPhim);
-  let dataInfoMovie = await detailService.handleLoadInfoMovie(idPhim);
-  await detailService.UpdateView(idPhim);
+  let dataComment = await detailService.handleLoadComment(dataReq);
+  let dataCountComment = await detailService.handleLoadCountComment(dataReq);
+  let dataGenreMovie = await detailService.handleLoadGenreMovie(dataReq);
+  let dataInfoMovie = await detailService.handleLoadInfoMovie(dataReq);
+  await detailService.UpdateView(dataReq);
 
   return res.render("detail.ejs", {
     dataGenre,

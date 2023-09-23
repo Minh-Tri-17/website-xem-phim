@@ -1,9 +1,9 @@
 import db from "../models/index";
 
-let handlePermissions = (email, password) => {
+let handlePermissions = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await checkLogin(email, password);
+      let data = await checkLogin(dataReq.email, dataReq.password);
       if (data && data.Quyen === "admin") {
         resolve(true);
       }
@@ -19,12 +19,12 @@ let handlePermissions = (email, password) => {
   });
 };
 
-let handleCreateAcc = (email, password) => {
+let handleCreateAcc = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       db.TaiKhoans.create({
-        Email: email,
-        MatKhau: password,
+        Email: dataReq.email,
+        MatKhau: dataReq.password,
       });
       resolve();
     } catch (error) {

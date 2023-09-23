@@ -9,10 +9,9 @@ let getPageDetail = async (req, res) => {
 };
 
 let handleComment = async (req, res) => {
-  let comment = req.query.comment;
-  let score = req.query.score;
-  let idPhim = req.query.id;
-  await detailService.handleCreateComment(idPhim, comment, score);
+  let dataReq = req.query;
+
+  await detailService.handleCreateComment(dataReq);
   return res.redirect("/");
 };
 

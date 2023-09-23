@@ -5,9 +5,8 @@ let getPageLogin = (req, res) => {
 };
 
 let handleLogin = async (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
-  let permission = await loginServices.handlePermissions(email, password);
+  let dataReq = req.body;
+  let permission = await loginServices.handlePermissions(dataReq);
 
   if (permission === true) {
     return res.redirect("/admin");
@@ -20,10 +19,9 @@ let handleLogin = async (req, res) => {
 };
 
 let handleRegist = async (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
+  let dataReq = req.body;
 
-  await loginServices.handleCreateAcc(email, password);
+  await loginServices.handleCreateAcc(dataReq);
 
   return res.redirect("/login");
 };

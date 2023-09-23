@@ -1,13 +1,13 @@
 import db from "../models/index";
 
-let handleLoadRelate = (idTheLoai) => {
+let handleLoadRelate = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Phims.findAll({
         include: [
           {
             model: db.TheLoais,
-            where: { id: idTheLoai },
+            where: { id: dataReq.idTheLoai },
           },
         ],
         raw: false,
@@ -44,14 +44,14 @@ let handleLoadTop10View = () => {
   });
 };
 
-let handleLoadComment = (idPhim) => {
+let handleLoadComment = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.DanhGias.findAll({
         include: [
           {
             model: db.Phims,
-            where: { id: idPhim },
+            where: { id: dataReq.id },
           },
           {
             model: db.TaiKhoans,
@@ -71,14 +71,14 @@ let handleLoadComment = (idPhim) => {
   });
 };
 
-let handleLoadCountComment = (idPhim) => {
+let handleLoadCountComment = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.DanhGias.findAndCountAll({
         include: [
           {
             model: db.Phims,
-            where: { id: idPhim },
+            where: { id: dataReq.id },
           },
         ],
         nest: true,
@@ -92,14 +92,14 @@ let handleLoadCountComment = (idPhim) => {
   });
 };
 
-let handleLoadGenreMovie = (idPhim) => {
+let handleLoadGenreMovie = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.TheLoais.findAll({
         include: [
           {
             model: db.Phims,
-            where: { id: idPhim },
+            where: { id: dataReq.id },
           },
         ],
         raw: true,
@@ -113,14 +113,14 @@ let handleLoadGenreMovie = (idPhim) => {
   });
 };
 
-let handleLoadInfoMovie = (idPhim) => {
+let handleLoadInfoMovie = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.ThongTinPhims.findAll({
         include: [
           {
             model: db.Phims,
-            where: { id: idPhim },
+            where: { id: dataReq.id },
           },
         ],
         raw: false,
@@ -135,14 +135,15 @@ let handleLoadInfoMovie = (idPhim) => {
   });
 };
 
-let handleCreateComment = (idPhim, comment, score) => {
+let handleCreateComment = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
+      console.log(dataReq);
       await db.DanhGias.create(
         {
-          NoiDung: comment,
-          Diem: score,
-          PhimId: idPhim,
+          NoiDung: dataReq.comment,
+          Diem: dataReq.score,
+          PhimId: dataReq.id,
           TaiKhoanId: 1,
         },
         {
@@ -160,11 +161,11 @@ let handleCreateComment = (idPhim, comment, score) => {
   });
 };
 
-let UpdateView = (idPhim) => {
+let UpdateView = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let movie = await db.Phims.findOne({
-        where: { id: idPhim },
+        where: { id: dataReq.id },
       });
 
       if (movie) {

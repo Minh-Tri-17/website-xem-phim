@@ -104,11 +104,11 @@ let handleLoadTopSlide = () => {
   });
 };
 
-let handleLoadDetailMovie = (idPhim) => {
+let handleLoadDetailMovie = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Phims.findOne({
-        where: { id: idPhim },
+        where: { id: dataReq.id },
         raw: true,
       });
       if (data) {
