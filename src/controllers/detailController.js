@@ -5,7 +5,10 @@ let getPageDetail = async (req, res) => {
   let dataGenre = await headerService.handleLoadGenre();
   let dataCatalog = await headerService.handleLoadCatalog();
 
-  return res.render("detail.ejs", { dataGenre, dataCatalog });
+  return res.render("detail.ejs", {
+    dataGenre,
+    dataCatalog,
+  });
 };
 
 let handleComment = async (req, res) => {

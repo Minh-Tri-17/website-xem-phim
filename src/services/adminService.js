@@ -297,7 +297,7 @@ let CreateMovie = (dataReq) => {
   });
 };
 
-let UpdateMovie = (dataReq) => {
+let UpdateMovie = (dataReq, dataFile) => {
   return new Promise(async (resolve, reject) => {
     try {
       let movie = await db.Phims.findOne({
@@ -311,8 +311,8 @@ let UpdateMovie = (dataReq) => {
         if (dataReq.images) {
           movie.Anh = dataReq.images;
         }
-        if (dataReq.images) {
-          movie.Link = dataReq.link;
+        if (dataFile) {
+          movie.Link = dataFile;
         }
         if (dataReq.poster) {
           movie.Poster = dataReq.poster;

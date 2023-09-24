@@ -22,7 +22,9 @@
                   &gt; THEATRE OF THE DEAD
                 </h1>
               </div>
-              <video src="https://youtu.be/l7rUbFnEwd8" controls></video>
+              <video controls>
+                <source src="../video/<%= dataDetail.Link %>" type="video/mp4">
+              </video>
             </div>
           </section>
           <!-- END VIDEO -->
@@ -43,14 +45,14 @@
                         <%= dataDetail.TenPhim %>
                       </h1>
                       <div class="info-time">
-                        <p>Năm: <%= dataInfoMovie[0].NamSanXuat %>
+                        <p>Năm: <%= dataInfoMovie.NamSanXuat %>
                         </p>
-                        <p>Thời lượng: <%= dataInfoMovie[0].ThoiLuong %> phút</p>
-                        <p>Quốc gia: <%= dataInfoMovie[0].QuocGia %>
+                        <p>Thời lượng: <%= dataInfoMovie.ThoiLuong %> phút</p>
+                        <p>Quốc gia: <%= dataInfoMovie.QuocGia %>
                         </p>
-                        <p>Đạo diễn: <%= dataInfoMovie[0].DaoDien %>
+                        <p>Đạo diễn: <%= dataInfoMovie.DaoDien %>
                         </p>
-                        <p>Diễn viên: <%= dataInfoMovie[0].DienVien %>
+                        <p>Diễn viên: <%= dataInfoMovie.DienVien %>
                         </p>
                         <p>Lượt xem: <%= dataDetail.LuotXem %> lượt</p>
                         <form action="" class="seach">
@@ -84,7 +86,7 @@
                   <hr />
                   <h3>Tóm tắt</h3>
                   <p>
-                    <%= dataInfoMovie[0].TomTat %>
+                    <%= dataInfoMovie.TomTat %>
                   </p>
                 </div>
               </div>

@@ -1,4 +1,6 @@
 import adminService from "../services/adminService";
+import multer from "multer";
+import fs from "fs";
 
 let getPageAdmin = async (req, res) => {
   let dataUser = await adminService.handleLoadUser();
@@ -54,6 +56,7 @@ let handleCreate = async (req, res) => {
 
 let handleUpdate = async (req, res) => {
   let dataReq = req.body;
+  let dataFile = req.file.originalname;
 
   if (dataReq.idTK) {
     await adminService.UpdateUser(dataReq);
@@ -64,7 +67,7 @@ let handleUpdate = async (req, res) => {
   }
 
   if (dataReq.idP) {
-    await adminService.UpdateMovie(dataReq);
+    await adminService.UpdateMovie(dataReq, dataFile);
   }
 
   if (dataReq.idTL) {

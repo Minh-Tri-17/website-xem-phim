@@ -116,18 +116,21 @@ let handleLoadGenreMovie = (dataReq) => {
 let handleLoadInfoMovie = (dataReq) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.ThongTinPhims.findAll({
-        include: [
-          {
-            model: db.Phims,
-            where: { id: dataReq.id },
-          },
-        ],
+      let dataNull = {};
+      let data = await db.ThongTinPhims.findOne({
+        where: { PhimId: dataReq.id },
         raw: false,
       });
 
       if (data) {
         resolve(data);
+      } else {
+        dataNull.NamSanXuat = "";
+        dataNull.ThoiLuong = "";
+        dataNull.QuocGia = "";
+        dataNull.DaoDien = "";
+        dataNull.DienVien = "";
+        resolve(dataNull);
       }
     } catch (error) {
       reject(error);
