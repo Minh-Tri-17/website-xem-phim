@@ -1,6 +1,4 @@
 import adminService from "../services/adminService";
-import multer from "multer";
-import fs from "fs";
 
 let getPageAdmin = async (req, res) => {
   let dataUser = await adminService.handleLoadUser();
@@ -30,6 +28,8 @@ let getPageAdmin = async (req, res) => {
 
 let handleCreate = async (req, res) => {
   let dataReq = req.body;
+  let dataFile1 = req.files.fileImage[0].originalname;
+  let dataFile2 = req.files.fileVideo[0].originalname;
 
   if (dataReq.email && dataReq.password) {
     await adminService.CreateUser(dataReq);
@@ -40,7 +40,9 @@ let handleCreate = async (req, res) => {
   }
 
   if (dataReq.nameMovies) {
-    await adminService.CreateMovie(dataReq);
+    console.log(dataFile1);
+    console.log(dataFile2);
+    await adminService.CreateMovie(dataReq, dataFile1, dataFile2);
   }
 
   if (dataReq.nameGenre) {

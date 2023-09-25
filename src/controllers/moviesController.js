@@ -20,7 +20,8 @@ let getPageMovies = async (req, res) => {
   }
   if ((country, year)) {
     dataMovie = await moviesService.handleLoadFilterMovie(country, year);
-  } else {
+  }
+  if (!idTheLoai && !idDanhMuc && !inputSeach && !country && !year) {
     dataMovie = await moviesService.handleLoadAllMovie();
   }
 

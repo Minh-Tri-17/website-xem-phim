@@ -346,11 +346,11 @@
             </div>
             <div class="section" id="create-movies">
               <h1>thêm phim</h1>
-              <form action="/handleCreate" method="post">
+              <form action="/handleCreate" method="post" enctype="multipart/form-data">
                 <input type="text" name="idP" hidden />
                 <input type="text" name="nameMovies" placeholder="Tên phim" />
-                <input type="text" name="image" placeholder="Ảnh" />
-                <input type="text" name="link" placeholder="Link" />
+                <input type="file" name="fileImage" multiple style="color:aliceblue">
+                <input type="file" name="fileVideo" multiple style="color:aliceblue">
                 <input type="text" name="poster" placeholder="Poster" />
                 <select name="genre">
                   <option value="">-- Chọn sắp xếp --</option>
@@ -376,7 +376,7 @@
               <form action="/handleUpdate" method="post" enctype="multipart/form-data">
                 <input type="text" name="idP" />
                 <input type="text" name="nameMovies" placeholder="Tên phim" />
-                <input type="text" name="image" placeholder="Ảnh" />
+                <input type="file" name="fileImage" multiple style="color:aliceblue">
                 <input type="file" name="fileVideo" multiple style="color:aliceblue">
                 <input type="text" name="poster" placeholder="Poster" />
                 <select name="genre">

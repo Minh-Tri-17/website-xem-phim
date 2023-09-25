@@ -41,8 +41,6 @@ let handleDetailMovie = async (req, res) => {
   let dataInfoMovie = await detailService.handleLoadInfoMovie(dataReq);
   await detailService.UpdateView(dataReq);
 
-  console.log(dataInfoMovie);
-
   return res.render("detail.ejs", {
     dataGenre,
     dataCatalog,

@@ -4,7 +4,9 @@ import { Op } from "sequelize";
 let handleLoadAllMovie = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let data = await db.Phims.findAll();
+      let data = await db.Phims.findAll({
+        include: [{ model: db.TheLoais }],
+      });
       if (data) {
         resolve(data);
       } else {
@@ -37,8 +39,12 @@ let handleLoadMovieCatalog = (idDanhMuc) => {
   return new Promise(async (resolve, reject) => {
     try {
       let data = await db.Phims.findAll({
-        include: [{ model: db.DanhMucs, where: { id: idDanhMuc } }],
+        include: [
+          { model: db.DanhMucs, where: { id: idDanhMuc } },
+          { model: db.TheLoais },
+        ],
       });
+
       if (data) {
         resolve(data);
       } else {
@@ -58,6 +64,7 @@ let handleLoadSeachMovie = (inputSeach) => {
           {
             model: db.DanhMucs,
           },
+          { model: db.TheLoais },
         ],
         where: { TenPhim: { [Op.like]: `%${inputSeach}%` } },
       });
@@ -81,6 +88,7 @@ let handleLoadFilterMovie = (country, year) => {
           {
             model: db.DanhMucs,
           },
+          { model: db.TheLoais },
           {
             model: db.ThongTinPhims,
             where: {

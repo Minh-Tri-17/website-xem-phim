@@ -267,13 +267,13 @@ let DeleteInforMovie = (dataReq) => {
   });
 };
 
-let CreateMovie = (dataReq) => {
+let CreateMovie = (dataReq, dataFile1, dataFile2) => {
   return new Promise(async (resolve, reject) => {
     try {
       await db.Phims.create({
         TenPhim: dataReq.nameMovies,
-        Anh: dataReq.images,
-        Link: dataReq.link,
+        Anh: dataFile1,
+        Link: dataFile2,
         Poster: dataReq.poster,
         LuotXem: 0,
       });
