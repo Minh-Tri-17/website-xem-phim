@@ -40,8 +40,6 @@ let handleCreate = async (req, res) => {
   }
 
   if (dataReq.nameMovies) {
-    console.log(dataFile1);
-    console.log(dataFile2);
     await adminService.CreateMovie(dataReq, dataFile1, dataFile2);
   }
 
@@ -58,7 +56,8 @@ let handleCreate = async (req, res) => {
 
 let handleUpdate = async (req, res) => {
   let dataReq = req.body;
-  let dataFile = req.file.originalname;
+  let dataFile1 = req.files.fileImage[0].originalname;
+  let dataFile2 = req.files.fileVideo[0].originalname;
 
   if (dataReq.idTK) {
     await adminService.UpdateUser(dataReq);
@@ -69,7 +68,7 @@ let handleUpdate = async (req, res) => {
   }
 
   if (dataReq.idP) {
-    await adminService.UpdateMovie(dataReq, dataFile);
+    await adminService.UpdateMovie(dataReq, dataFile1, dataFile2);
   }
 
   if (dataReq.idTL) {
