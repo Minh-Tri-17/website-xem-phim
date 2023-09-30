@@ -17,7 +17,7 @@
             <div class="container">
               <div>
                 <h1>
-                  <a href="../html/home.jsp">Home</a> &gt;
+                  <a href="/">Home</a> &gt;
                   <a href="#">Kinh dị</a>
                   &gt; THEATRE OF THE DEAD
                 </h1>
@@ -95,7 +95,7 @@
                 <div class="movies-slide carousel-nav-center owl-carousel">
                   <!-- MOVIE ITEM -->
                   <% for(let i=0;i<dataRelate.length;i++) { %>
-                    <a href="/handleDetailMovie?id=<%= dataRelate[i].id%>&&idTheLoai=<%= dataRelate[i].TheLoais[0].id%>"
+                    <a href="/detail?id=<%= dataRelate[i].id%>&&idTheLoai=<%= dataRelate[i].TheLoais[0].id%>"
                       class="movie-item">
                       <img src="../images/movies/<%= dataRelate[i].Anh %>" alt="" />
                       <div class="movie-item-content">
@@ -167,8 +167,7 @@
               <div class="section-header">Top movies</div>
               <!-- ITEM MOVIE RELATED -->
               <% for(let i=0;i<dataTop10View.length;i++) { %>
-                <a
-                  href="/handleDetailMovie?id=<%= dataTop10View[i].id%>&&idTheLoai=<%= dataTop10View[i].TheLoais[0].id%>">
+                <a href="/detail?id=<%= dataTop10View[i].id%>&&idTheLoai=<%= dataTop10View[i].TheLoais[0].id%>">
                   <div class="item-related">
                     <img src="../images/movies/<%= dataTop10View[i].Anh %>" alt="" />
                     <div>

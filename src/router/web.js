@@ -51,14 +51,14 @@ const upload = multer({
 
 let initWebRoutes = async (app) => {
   router.get("/", homeController.getPageHome);
-  router.get("/handleDetailMovie", homeController.handleDetailMovie);
   router.get("/login", loginController.getPageLogin);
-  router.post("/handleLogin", loginController.handleLogin);
-  router.post("/handleRegist", loginController.handleRegist);
   router.get("/movies", moviesController.getPageMovies);
   router.get("/detail", detailController.getPageDetail);
-  router.get("/handleComment", detailController.handleComment);
   router.get("/admin", adminController.getPageAdmin);
+
+  router.post("/handleLogin", loginController.handleLogin);
+  router.post("/handleRegist", loginController.handleRegist);
+  router.get("/handleComment", detailController.handleComment);
 
   router.post("/handleCreate", upload, adminController.handleCreate);
   router.post("/handleUpdate", upload, adminController.handleUpdate);

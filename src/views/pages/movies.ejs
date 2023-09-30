@@ -21,7 +21,7 @@
                   <div class="container-filter">
                     <form action="/movies">
                       <select name="year">
-                        <option value="">-- Chọn sắp xếp --</option>
+                        <option value="0">-- Chọn sắp xếp --</option>
                         <% for(let i=0; i < dataYear.length ; i++) {%>
                           <option value="<%= dataYear[i].NamSanXuat %>">
                             <%= dataYear[i].NamSanXuat %>
@@ -43,7 +43,7 @@
                 <div class="movies">
                   <!-- MOVIE ITEM -->
                   <% for(let i=0; i < dataMovie.length ; i++) {%>
-                    <a href="/handleDetailMovie?id=<%= dataMovie[i].id%>&&idTheLoai=<%= dataMovie[i].TheLoais[0].id%>"
+                    <a href="/detail?id=<%= dataMovie[i].id%>&&idTheLoai=<%= dataMovie[i].TheLoais[0].id%>"
                       class="movie-item">
                       <img src="../images/movies/<%= dataMovie[i].Anh %>" alt="" />
                       <div class="movie-item-content">
